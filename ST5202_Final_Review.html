@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>ST5202 Final Review · 中英双语期末复习 (v2)</title>
+<script>
+  MathJax = {
+    tex: {inlineMath: [['$','$'],['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']]},
+    svg: {fontCache: 'global'}
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+  @page { size: A4; margin: 15mm 13mm 15mm 13mm; }
+  html, body {
+    font-family: "Times New Roman", "Songti SC", "STSong", "SimSun", serif;
+    font-size: 10.5pt;
+    line-height: 1.42;
+    color: #000;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+  }
+  .wrapper { max-width: 190mm; margin: 0 auto; padding: 8mm 5mm; }
+  h1 {
+    font-size: 19pt;
+    text-align: center;
+    border-bottom: 2.5pt double #000;
+    padding-bottom: 5pt;
+    margin: 4pt 0 4pt 0;
+    letter-spacing: 0.3pt;
+  }
+  .subtitle {
+    text-align: center;
+    font-size: 10pt;
+    margin-bottom: 12pt;
+    font-style: italic;
+  }
+  h2 {
+    font-size: 13.5pt;
+    border-left: 5pt solid #000;
+    padding: 3pt 0 3pt 8pt;
+    background: #eee;
+    margin: 16pt 0 7pt 0;
+    page-break-after: avoid;
+  }
+  h3 {
+    font-size: 11.5pt;
+    margin: 10pt 0 3pt 0;
+    border-bottom: 0.8pt solid #555;
+    padding-bottom: 2pt;
+    page-break-after: avoid;
+  }
+  h4 { font-size: 10.5pt; margin: 7pt 0 3pt 0; page-break-after: avoid; }
+  p { margin: 3pt 0; text-align: justify; }
+  ul, ol { margin: 3pt 0 3pt 16pt; padding: 0; }
+  li { margin: 1.5pt 0; }
+  strong { font-weight: bold; }
+  code {
+    font-family: "Consolas", "Menlo", "DejaVu Sans Mono", monospace;
+    font-size: 9.5pt;
+    background: #eee;
+    padding: 0.5pt 2pt;
+    border-radius: 2pt;
+  }
+  pre {
+    background: #f4f4f4;
+    border: 0.5pt solid #888;
+    border-left: 3pt solid #000;
+    padding: 5pt 7pt;
+    font-family: "Consolas", "Menlo", "DejaVu Sans Mono", monospace;
+    font-size: 9pt;
+    line-height: 1.3;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    page-break-inside: avoid;
+    margin: 4pt 0;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 5pt 0;
+    font-size: 9.5pt;
+    page-break-inside: avoid;
+  }
+  th, td { border: 0.5pt solid #000; padding: 2.5pt 4pt; text-align: left; vertical-align: top; }
+  th { background: #ddd; font-weight: bold; }
+  .keybox {
+    border: 1pt solid #000;
+    background: #f6f6f6;
+    padding: 6pt 9pt;
+    margin: 6pt 0;
+    font-size: 11.5pt;
+    page-break-inside: avoid;
+  }
+  .keybox-title {
+    font-weight: bold;
+    font-size: 9.5pt;
+    letter-spacing: 0.4pt;
+    display: block;
+    margin-bottom: 3pt;
+    text-transform: uppercase;
+  }
+  .tip {
+    border-left: 3pt solid #000;
+    background: #f3f3f3;
+    padding: 4pt 8pt;
+    margin: 5pt 0;
+    font-size: 10pt;
+  }
+  .warn {
+    border: 1pt dashed #000;
+    padding: 4pt 8pt;
+    margin: 5pt 0;
+    font-size: 10pt;
+    background: #fafafa;
+  }
+  .big { font-size: 12pt; }
+  .small { font-size: 9pt; color: #333; }
+  hr { border: none; border-top: 0.5pt solid #888; margin: 8pt 0; }
+  .page-break { page-break-before: always; }
+  .no-break { page-break-inside: avoid; }
+  .toc {
+    border: 0.8pt solid #000;
+    padding: 6pt 10pt;
+    margin: 6pt 0 12pt 0;
+    background: #fafafa;
+    font-size: 10pt;
+    column-count: 2;
+    column-gap: 10pt;
+  }
+  .toc ol { margin: 0 0 0 14pt; }
+  .tag {
+    display: inline-block;
+    border: 0.8pt solid #000;
+    padding: 0 3pt;
+    font-size: 8pt;
+    font-weight: bold;
+    margin: 0 2pt;
+    vertical-align: middle;
+  }
+  @media print {
+    a { color: #000; text-decoration: none; }
+    .no-print { display: none; }
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+<h1>ST5202 Applied Regression Analysis<br>期末复习 · Final Review (v2 · 基于完整讲义)</h1>
+<p class="subtitle">Lecture 4 (Multiple Comparisons) → Lecture 9 (Generalized Linear Models)<br>
+Open-Book · Pen-and-Paper · Calculator Allowed · No R<br>
+(读 R 输出 · 理解概念 · 手动计算)</p>
+
+<div class="toc no-break">
+<strong>目录 Contents</strong>
+<ol>
+  <li>总览与课程框架 Overview</li>
+  <li>L4 Multiple Comparisons 多重比较</li>
+  <li>L5 ANCOVA &amp; 非线性预测项 Non-linear Predictors</li>
+  <li>L6 Model Selection 模型选择(含 Ridge/LASSO)</li>
+  <li>L7 Regression Diagnostics 回归诊断</li>
+  <li>L8 Remedial Measures 补救措施(WLS/Ridge/PCR/Box-Cox)</li>
+  <li>L9 Generalized Linear Models 广义线性模型</li>
+  <li>R 输出逐行解读 R Cheat-Sheet</li>
+  <li>高频公式速查卡 Formula Sheet <span class="tag">★★★</span></li>
+  <li>七种题型应答模板 Question Templates</li>
+  <li>考前 48 小时 Checklist</li>
+  <li>中英术语对照 Glossary</li>
+</ol>
+</div>
+
+<!-- ===================================================== -->
+<h2>1. 总览 Overview — 课程框架</h2>
+
+<p><strong>一条主线</strong>:基础 LRM($y=X\beta+\epsilon$)<strong>→ 当我们同时做多组检验(L4)或扩展模型(L5)时如何推断 → 选择模型(L6) → 诊断模型(L7) → 补救问题(L8) → 扩展到非正态响应(L9 GLM)</strong>。</p>
+
+<table>
+<tr><th>模块</th><th>核心问题</th><th>关键工具</th><th>重要示例</th></tr>
+<tr><td>L4 Multiple Comparisons</td><td>多组比较如何控制 FWER?</td><td>Scheffé / Tukey / Dunnett / Bonferroni</td><td>Meat Storage, Kenton Food</td></tr>
+<tr><td>L5 ANCOVA + Non-linear</td><td>含 factor+covariate 或非线性?</td><td>Dummy + covariate, 多项式, log, piecewise</td><td>Cracker, Salable Flowers, Piecework, Cherry</td></tr>
+<tr><td>L6 Model Selection</td><td>选哪些变量?高维怎么办?</td><td>AIC/BIC/Cp/CV + Ridge/LASSO/SCAD/MCP</td><td>Insurance, Pullstrength</td></tr>
+<tr><td>L7 Diagnostics</td><td>假设是否成立?异常点?</td><td>3 种残差, leverage, Cook's D</td><td>Surgical Unit</td></tr>
+<tr><td>L8 Remedial Measures</td><td>异方差/共线/非正态?</td><td>WLS + VIF+Ridge+PCR + VST + Box-Cox</td><td>WBP, BP, Dementia, Animal, Ulcer</td></tr>
+<tr><td>L9 GLM</td><td>响应非正态(0/1 或 count)?</td><td>Logistic + Poisson</td><td>Challenger, Aneurysms, Mine Fracture</td></tr>
+</table>
+
+<!-- ===================================================== -->
+<h2>2. L4 Multiple Comparisons 多重比较</h2>
+
+<h3>2.1 为什么要多重比较?</h3>
+<p>对 $m$ 个检验,每个用 $\alpha$ → <strong>Family-Wise Error Rate (FWER)</strong> $\approx 1-(1-\alpha)^m$。例:$\alpha=0.05, m=100 \Rightarrow$ 至少一个错误拒绝的概率 $=1-0.95^{100}\approx\mathbf{0.9941}$(近乎必错)。</p>
+<p><strong>FWER 定义</strong>:$P\!\left(\bigcup_{j\in C}\{T_j\ge c_j\}\right)$。目标:找 critical value 把此概率控制在 $\alpha$。</p>
+
+<h3>2.2 通用检验统计量</h3>
+<div class="keybox">
+<span class="keybox-title">★ Test statistic for any contrast</span>
+$$T_a = \frac{a^\top\hat\theta}{\sqrt{a^\top\hat\Sigma_\theta\, a}}$$
+其中 $\hat\theta$ 是估计向量(如 $\hat\mu$ 或 $\hat\beta$),$\hat\Sigma_\theta$ 是其 var-cov 矩阵。
+</div>
+
+<h3>2.3 四大准则 Four Criteria <span class="tag">★必考</span></h3>
+
+<table>
+<tr><th>准则</th><th>适用场景</th><th>Critical value (two-sided)</th></tr>
+<tr>
+  <td><strong>Scheffé</strong></td>
+  <td>任何 contrast,含数据驱动 / general exploration;$q$ 个 group means</td>
+  <td>$c_\alpha=\sqrt{m_1\,F_{m_1,m_2}(\alpha)}$;主效应场合 $m_1=a-1,\,m_2=n-a$: $\sqrt{(a-1)F_{a-1,n-a}(\alpha)}$</td>
+</tr>
+<tr>
+  <td><strong>Tukey (HSD)</strong></td>
+  <td>全部 pairwise,<strong>要求 equal n</strong></td>
+  <td>$c_\alpha=q_{a,\,n_{err}}(\alpha)/\sqrt{2}$(Studentized range quantile)</td>
+</tr>
+<tr>
+  <td><strong>Dunnett</strong></td>
+  <td>所有 treatment vs 1 个 control</td>
+  <td>查 Dunnett 表 $d_{a,\nu,\alpha}$;unequal $n$ 时乘 $m_j=1+0.07(1-n_j/n_1)$</td>
+</tr>
+<tr>
+  <td><strong>Bonferroni</strong></td>
+  <td>有限个 pre-specified contrasts/tests</td>
+  <td>$t_{n-p}(\alpha/(2k))$;<strong>simultaneous p-value = $k\times$ individual p</strong></td>
+</tr>
+</table>
+
+<div class="keybox">
+<span class="keybox-title">★ 决策规则 Decision Rule</span>
+$$\text{Reject } H_0 \iff |T_a| > c_\alpha,\qquad \text{CI: } a^\top\hat\theta \pm c_\alpha\cdot \sqrt{a^\top\hat\Sigma_\theta a}$$
+</div>
+
+<h3>2.4 Studentized Range 公式</h3>
+<p>对 $a$ 个 groups,$n_{err}=n-a$:</p>
+<p>$q_{a,n_{err}}=\dfrac{\sqrt{n}\,(\max \bar Y_i - \min\bar Y_i)}{\hat\sigma} = \sqrt{2}\,\max|T_{ij}|$</p>
+
+<h3>2.5 Scheffé 单侧 one-sided 调整(Supplement L4)</h3>
+<p>将 $\alpha$ 替换为 $2\alpha$:$c_{\text{one-sided}}=\sqrt{(a-1)F_{a-1,\,n_{err}}(2\alpha)}$。</p>
+
+<h3>2.6 关键关系:Overall F vs Contrasts</h3>
+<div class="warn">
+<strong>易错点</strong>: Overall ANOVA F 可以显著,而没有一个 inspected contrast 显著(反之亦然)。overall F 等价于"Scheffé 下至少一个 contrast 显著"的 dual。
+</div>
+
+<h3>2.7 如何选准则?(高频判断题)</h3>
+<div class="tip">
+<strong>口诀</strong>:
+<ol>
+<li><strong>仅限 pairwise + equal n</strong> → <strong>Tukey</strong>(通常最紧)</li>
+<li><strong>所有 possible contrasts(含事后探索)</strong> → <strong>Scheffé</strong></li>
+<li><strong>vs control</strong> → <strong>Dunnett</strong></li>
+<li><strong>$k$ 个预先指定 + $k$ 小</strong> → 比较 <strong>Bonferroni</strong> 与 Tukey/Scheffé,c 小者胜</li>
+<li><strong>directional(one-sided)且非 pairwise</strong> → Tukey 不能直接用</li>
+</ol>
+</div>
+
+<h3>2.8 R 实现</h3>
+<pre>fit &lt;- aov(y ~ group, data=d)
+TukeyHSD(fit)                              # Tukey HSD
+pairwise.t.test(y, group, p.adjust="bonferroni")
+library(multcomp); summary(glht(fit, linfct=mcp(group="Dunnett")))
+# Scheffé: 手动构造 C matrix
+C &lt;- rbind(c(1,-1,0,0))                    # contrast matrix
+bhat &lt;- coef(fit); VC &lt;- vcov(fit)
+est  &lt;- C %*% bhat; se &lt;- sqrt(diag(C %*% VC %*% t(C)))
+t_stat &lt;- est/se
+# 比较 |t_stat| 与 Scheffé critical</pre>
+
+<h3>2.9 例题(Past Paper Q1 类型)</h3>
+<p>3 brands,<code>lm(y~brand)</code> 给出 brand2 est=−15.8 (SE=2.498), brand3 est=5.2 (SE=2.498), $n-p=12$。预期 $\mu_2&lt;\mu_1&lt;\mu_3$(2 个 one-sided,$k=2$)。</p>
+<ul>
+<li>$t_1^*=-6.325$;&nbsp; $t_2^*=2.082$</li>
+<li>Bonferroni one-sided critical $=t_{12}(0.05/2)=\mathbf{2.1788}$</li>
+<li>$|t_1^*|&gt;2.1788$ → reject($\mu_2&lt;\mu_1$ 成立);$|t_2^*|&lt;2.1788$ → not reject</li>
+</ul>
+
+<!-- ===================================================== -->
+<h2>3. L5 ANCOVA &amp; 非线性预测项 <span class="tag">注意</span></h2>
+
+<div class="warn">
+<strong>⚠️ 注意</strong>:L5 <strong>不是</strong> general linear test 专题!它讲的是两类模型扩展:<br>
+<strong>(i)</strong> <strong>ANCOVA(协方差分析)</strong> — 同时含 factor 和 continuous covariate<br>
+<strong>(ii)</strong> <strong>非线性预测项</strong> — 多项式 / log-log / inverse / piecewise linear
+</div>
+
+<h3>3.1 ANCOVA 基本模型</h3>
+<div class="keybox">
+$$y_i=\beta_0+\sum_{j=2}^{k}\alpha_j u_{ij}+\gamma\, x_i+\epsilon_i$$
+$u_{ij}$ = factor 的 dummy;$x_i$ = covariate(协变量);$\gamma$ = 协变量斜率(假定各组相同)。
+</div>
+
+<h3>3.2 Comparison-of-regression-functions 模型(各组斜率不同)</h3>
+<div class="keybox">
+$$Y=\beta_0+\sum_j\alpha_j U_j+\beta X+\sum_j\xi_j U_j X+\epsilon$$
+<ul>
+<li>不同 <strong>intercept</strong>: $\beta_0+\alpha_j$</li>
+<li>不同 <strong>slope</strong>: $\beta+\xi_j$</li>
+<li>检验"平行性"$H_0:\xi_j=0\;\forall j$</li>
+</ul>
+</div>
+
+<h3>3.3 "When $x$ is held at its mean" 常用技巧</h3>
+<p>令 $z=x-\bar x$,模型 $y=\beta_0+\beta_2 T_2+\beta_3 T_3+\alpha z+\gamma_1 T_2 z+\gamma_2 T_3 z$。<br>
+$z=0$ 时:<strong>group means = Intercept + treatment effects</strong>。Contrast $\mu_2-\mu_1=\beta_2$,$\mu_3-\mu_1=\beta_3$。</p>
+
+<h3>3.4 非线性预测项 Non-linear predictor terms</h3>
+
+<table>
+<tr><th>类型</th><th>模型形式</th><th>注意</th></tr>
+<tr><td><strong>Polynomial</strong> 多项式</td><td>$y_i=\beta_0+\beta_1(x_i-\bar x)+\beta_2(x_i-\bar x)^2+\cdots$</td><td><strong>中心化</strong>减少共线性;但最高阶系数与是否中心化无关</td></tr>
+<tr><td><strong>Inverse</strong> 反函数</td><td>$y_i=\beta_0+\beta_1(1/x_i)+\epsilon_i$</td><td>适用渐近水平关系</td></tr>
+<tr><td><strong>Log-log</strong></td><td>$\log y=\beta_0+\beta_1\log x+\epsilon$</td><td>弹性解释;$\beta_1$ = $x$ 每增 1% 导致 $y$ 变 $\beta_1\%$</td></tr>
+<tr><td><strong>Piecewise linear</strong> 分段线性</td><td>$y_i=\beta_0+\beta_1 x_i+\alpha_1(x_i-c)^+ +\epsilon_i$</td><td>$x&lt;c$ 时斜率 $\beta_1$,$x\ge c$ 时 $\beta_1+\alpha_1$;检验 $H_0:\alpha_1=0$</td></tr>
+</table>
+
+<div class="tip">
+<strong>重点</strong>:"linear" in LRM 指"linear in <strong>parameters</strong>"。$y=\beta_0+\beta_1 x^2$ 仍然是线性模型;$y=\beta_0\,x^{\beta_1}$ 不是。
+</div>
+
+<h3>3.5 R 实现</h3>
+<pre>lm(y ~ x + type)                     # ANCOVA (same slope)
+lm(y ~ x * type)                     # Different slopes (interaction)
+lm(y ~ x + I(x^2) + I(x^3))          # Polynomial
+lm(y ~ I(1/x))                       # Inverse
+lm(log(y) ~ log(x1) + log(x2))       # Log-log
+z = (x - 250) * (x &gt;= 250)           # Piecewise at c=250
+lm(y ~ x + z)</pre>
+
+<h3>3.6 anova() 顺序问题</h3>
+<div class="warn">
+<strong>顺序依赖!</strong>&nbsp;<code>anova(lm(y~A*B))</code> 输出的是 <strong>Type I (sequential) SS</strong>,A 先进、B 后进,交互最后。若想要"加入 B 后 A 的独立贡献",需要反序或用 <code>drop1()</code>。
+</div>
+
+<!-- ===================================================== -->
+<h2>4. L6 Model Selection 模型选择(含正则化)</h2>
+
+<h3>4.1 Bias-Variance 分解</h3>
+<div class="keybox">
+$$\text{MSE} = \text{Var} + \text{bias}^2$$
+<strong>SPSE (Sum of Predicted Squared Error)</strong>:
+$$\text{SPSE} = n\sigma^2 + |M|\sigma^2 + \sum_i(\mu_i-\mu_{iM})^2$$
+</div>
+
+<h3>4.2 选择准则 Criteria <span class="tag">★</span></h3>
+
+<table>
+<tr><th>Criterion</th><th>公式</th><th>方向</th></tr>
+<tr><td><strong>$R^2$</strong></td><td>$SSR/SST$</td><td>越大越好 <em>但会一直随 p 增</em></td></tr>
+<tr><td><strong>Adjusted $R^2$</strong></td><td>$R_a^2 = R^2 - \dfrac{p}{n-p-1}(1-R^2)$</td><td>越大越好</td></tr>
+<tr><td><strong>Mallow's $C_p$</strong></td><td>$C_p=\dfrac{SSE_M}{\hat\sigma^2_{\text{full}}}-n+2|M|$</td><td>越小越好;理想 $E[C_p]\approx|M|$</td></tr>
+<tr><td><strong>AIC</strong></td><td>$-2\log L+2j_M$;LRM: $n\log\hat\sigma^2_M+2j_M+C$</td><td>越小越好</td></tr>
+<tr><td><strong>BIC</strong></td><td>$-2\log L+j_M\log n$</td><td>越小越好(更严,倾向 sparse)</td></tr>
+<tr><td><strong>EBIC</strong></td><td>$\text{BIC}+2\gamma\log\binom{p}{j_M}$,&nbsp; $\gamma=1-\dfrac{\log n}{2\log p}$</td><td>高维场合</td></tr>
+<tr><td><strong>$k$-fold CV</strong></td><td>$\tfrac{1}{n}\sum(y_i-x_i^\top\hat\beta^{(-\text{fold}(i))})^2$</td><td>越小越好</td></tr>
+<tr><td><strong>LOO CV</strong></td><td>$\tfrac{1}{n}\sum(y_i-x_i^\top\hat\beta^{(-i)})^2$</td><td>越小越好</td></tr>
+</table>
+
+<h3>4.3 三种逐步算法 Stepwise</h3>
+<ul>
+<li><strong>Forward</strong>: null → 每步加入使 AIC 最小的变量</li>
+<li><strong>Backward</strong>: full → 每步删除最不显著的</li>
+<li><strong>Stepwise (both)</strong>: 每步先考虑加再考虑删</li>
+</ul>
+
+<h3>4.4 读 stepAIC 输出 <span class="tag">★高频</span></h3>
+<pre>Step: AIC=276.73
+y ~ x3
+        Df     SSR     SSE
++ x2     1   52502    2210      ← SSR 最大 → 候选
++ x4     1   10639   44073
+&lt;none&gt;                  54712   ← 当前模型 SSE
++ x1     1    2887   51825</pre>
+<ul>
+<li><strong>SSR</strong> = $SSE_{\text{old}}-SSE_{\text{new}}$(减少量)</li>
+<li>候选 = SSR 最大行</li>
+<li>加入条件:新 AIC $&lt;$ <code>&lt;none&gt;</code> AIC</li>
+<li>近似:$\Delta\text{AIC}\approx n\ln(SSE_{\text{new}}/SSE_{\text{old}})+2$</li>
+</ul>
+
+<h3>4.5 正则化 / Shrinkage(L6 已引入,L8 继续用)<span class="tag">★</span></h3>
+
+<div class="keybox">
+<span class="keybox-title">★ 惩罚最小二乘</span>
+$$\min_\beta \; \tfrac{1}{n}\|y-X\beta\|^2 + p_\lambda(\beta)$$
+</div>
+
+<table>
+<tr><th>方法</th><th>惩罚</th><th>变量选择</th><th>特性</th></tr>
+<tr><td><strong>Ridge</strong></td><td>$\lambda\sum\beta_j^2$</td><td>否</td><td>凸;所有 coef 缩小;允许 $p&gt;n$</td></tr>
+<tr><td><strong>LASSO</strong></td><td>$\lambda\sum|\beta_j|$</td><td>是 (sparse)</td><td>凸;$\ell_1$;同时选变量和估计</td></tr>
+<tr><td><strong>Adaptive LASSO</strong></td><td>$\lambda\sum w_j|\beta_j|,\; w_j=|\hat\beta_j|^{-1}$</td><td>是</td><td>凸;oracle 性质</td></tr>
+<tr><td><strong>SCAD</strong></td><td>Smoothly Clipped AD</td><td>是</td><td>非凸;大系数无惩罚</td></tr>
+<tr><td><strong>MCP</strong></td><td>Minimax Concave</td><td>是</td><td>非凸;$|\beta|&gt;\gamma\lambda$ 时惩罚为 0</td></tr>
+</table>
+
+<h3>4.6 $\lambda$ 的选择</h3>
+<ul>
+<li><strong>Prediction 为主</strong> → CV / GCV 选 $\lambda_{\min}$(CV error 最小)</li>
+<li><strong>Variable identification 为主</strong> → BIC / EBIC</li>
+<li><strong>保守(更少假阳性)</strong> → <code>lambda.1se</code>(1 SE rule)</li>
+</ul>
+
+<h3>4.7 R 实现</h3>
+<pre>library(MASS)
+stepAIC(lm(y~1, data=d), scope=list(upper=lm(y~., data=d)), direction="forward")
+stepAIC(lm(y~., data=d), direction="backward")
+stepAIC(lm(y~1, data=d), scope=list(upper=lm(y~., data=d)), direction="both")
+AIC(fit, k=2);  AIC(fit, k=log(n))     # BIC via k=log(n)
+
+library(boot); cv.glm(d, glmfit, K=10)$delta   # k-fold CV
+
+library(glmnet)
+cv &lt;- cv.glmnet(X, y, alpha=1)          # 1=LASSO, 0=Ridge
+cv$lambda.min;  cv$lambda.1se
+coef(cv, s="lambda.min")
+predict(cv, newx=X_test, s="lambda.min")</pre>
+
+<!-- ===================================================== -->
+<h2>5. L7 Regression Diagnostics 回归诊断 <span class="tag">重点</span></h2>
+
+<h3>5.1 Hat Matrix &amp; Leverage</h3>
+<div class="keybox">
+$$H = X(X^\top X)^{-1}X^\top,\quad h_{ii}=x_i^\top(X^\top X)^{-1}x_i,\quad \sum_i h_{ii}=p$$
+$$\mathrm{Var}(e_i)=\sigma^2(1-h_{ii})$$
+</div>
+<ul>
+<li>$h_{ii}\in[0,1]$,平均 $=p/n$</li>
+<li>阈值:<strong>$h_{ii}&gt;2p/n$</strong> → high leverage</li>
+<li>仅依赖 X,不依赖 y</li>
+</ul>
+
+<h3>5.2 三类残差 Three Residuals <span class="tag">★必背</span></h3>
+<div class="keybox">
+<span class="keybox-title">★ 核心公式 — 3 Residuals</span>
+$$\text{Raw:}\; e_i=y_i-\hat y_i$$
+$$\text{Studentized (internal):}\; r_i'=\frac{e_i}{\hat\sigma\sqrt{1-h_{ii}}}$$
+$$\text{Studentized Deleted (external):}\; r_i^*=\frac{y_i-\hat y_i^{(i)}}{\hat\sigma_{(i)}\sqrt{1-h_{ii}}}=r_i'\sqrt{\frac{n-p-1}{n-p-r_i'^2}}\sim t_{n-p-1}$$
+</div>
+
+<h3>5.3 Cook's Distance</h3>
+<div class="keybox">
+$$d_i=\frac{(\hat\beta^{(i)}-\hat\beta)^\top(X^\top X)(\hat\beta^{(i)}-\hat\beta)}{p\,\hat\sigma^2}=\frac{r_i'^2}{p}\cdot\frac{h_{ii}}{1-h_{ii}}$$
+</div>
+<ul>
+<li>综合 inconsistency($r_i'^2$)+ leverage($h_{ii}$)→ influence</li>
+<li>阈值:$d_i&gt;1$ 严重;Tutorial 常用 $d_i&gt;0.1$ 做筛选</li>
+</ul>
+
+<h3>5.4 三个概念必分清 <span class="tag">★</span></h3>
+<table>
+<tr><th>概念</th><th>英文</th><th>度量</th><th>解释</th></tr>
+<tr><td>高杠杆</td><td>high leverage</td><td>$h_{ii}$</td><td>X 空间位置极端(x 远离均值)</td></tr>
+<tr><td>不一致/异常</td><td>outlier / inconsistency</td><td>$|r_i^*|$</td><td>y 偏离模型预测</td></tr>
+<tr><td>高影响</td><td>high influence</td><td>$d_i$</td><td>删除后对 $\hat\beta$ 变化大</td></tr>
+</table>
+
+<h3>5.5 系统诊断 Systematic Diagnostics(全局)</h3>
+<ol>
+<li><code>plot(yhat, r)</code> → <strong>homogeneity</strong>(漏斗形 → 异方差;曲线形 → 非线性)</li>
+<li><code>qqnorm(rsta)</code> → <strong>normality</strong>(两端偏离 → 重尾/偏态)</li>
+<li><code>plot(x_j, r)</code> → 该 $x_j$ 是否需非线性项 / 是否有遗漏变量</li>
+<li><code>plot(time, r)</code> → 独立性</li>
+</ol>
+
+<h3>5.6 局部诊断 Local Diagnostics(个体)</h3>
+<ol>
+<li>QQ plot of $h_{ii}$、$|r_i^*|$、$d_i$ 各自找极值</li>
+<li>阈值筛查</li>
+<li>Formal outlier test:造 dummy $u_i$(第 i 个观测 = 1),拟合 <code>lm(y~X+u_i)</code>,检验 $u_i$ 系数</li>
+<li>同时检验 $m$ 个点用 <strong>Bonferroni</strong>: $t_{n-p-m}(\alpha/(2m))$</li>
+</ol>
+
+<h3>5.7 Surgical Unit 例 Summary(讲义标杆例)</h3>
+<p>n=54,4 预测 (X1 clot, X2 prog, X3 enzyme, X4 liver),响应 log-survival。</p>
+<ul>
+<li>按 $h_{ii}$ 标出:13,17,18,28,32,38,42,43,50,52</li>
+<li>按 $|r^*|$:37,9,27,38</li>
+<li>按 $d_i$:22,28,37,38</li>
+<li>Bonferroni 联合检验后,除 obs 37 外都显著</li>
+</ul>
+
+<h3>5.8 R 代码(通用)</h3>
+<pre>fit  &lt;- glm(y ~ X, data=d)            # 或 lm()
+yhat &lt;- fitted(fit)
+r    &lt;- residuals(fit, type="pearson")
+h    &lt;- hatvalues(fit)
+rsta &lt;- rstandard(fit)                 # internally studentized r_i'
+rstu &lt;- rstudent(fit)                  # externally studentized r_i*
+cook &lt;- cooks.distance(fit)
+
+par(mfrow=c(2,2))
+plot(yhat, r);  qqnorm(rsta);  qqnorm(h);  qqnorm(rstu);  qqnorm(cook)
+
+# 阈值筛
+h[h &gt; 2*p/n];  rstu[abs(rstu) &gt; 2*sd(rstu)];  cook[cook &gt; 0.1]
+
+# Bonferroni simultaneous outlier test
+qt(alpha/(2*m), n-p-m, lower.tail=FALSE)</pre>
+
+<!-- ===================================================== -->
+<h2>6. L8 Remedial Measures 补救措施</h2>
+
+<h3>6.1 四类问题四类 remedy</h3>
+<table>
+<tr><th>问题</th><th>补救</th></tr>
+<tr><td>Nonlinearity 非线性</td><td>多项式/log/inverse/piecewise (从 L5)</td></tr>
+<tr><td>Non-constant variance 异方差</td><td>WLS / 方差稳定变换 VST / Box-Cox</td></tr>
+<tr><td>Multi-collinearity 共线</td><td>删变量 / Ridge / PCR</td></tr>
+<tr><td>Non-normality 非正态</td><td>Box-Cox / 变换</td></tr>
+</table>
+
+<h3>6.2 WLS 加权最小二乘 <span class="tag">★</span></h3>
+<div class="keybox">
+$$\hat\beta_W = (X^\top W X)^{-1} X^\top W y,\quad W=\mathrm{diag}(w_i),\; w_i=1/\sigma_i^2$$
+$$\mathrm{Var}(\hat\beta_W) = \sigma^2 (X^\top W X)^{-1}$$
+目标:$\min\sum w_i(y_i-x_i^\top\beta)^2$
+</div>
+
+<h3>6.3 估计权重的方法 Weight Estimation</h3>
+<p><strong>方法 A(无重复,讲义主方法)</strong>:$\log|r_i|$ 对 $\log\hat y_i$ 回归 → $\log|r_i|=\alpha_0+\alpha_1\log\hat y_i$,则</p>
+<div class="keybox">
+$$w_i = \hat y_i^{-2\hat\alpha_1}$$
+</div>
+<p><strong>方法 B</strong>:$|r_i|$ 对 $\hat y_i$ 线性回归 → $w_i = 1/\hat{|r_i|}^2$</p>
+<p><strong>方法 C(有重复)</strong>:每组 $n_i$ 个观测,组内样本方差 $s_i^2$ → $w_i = n_i/s_i^2$</p>
+
+<div class="tip">
+<strong>诊断加权模型</strong>:画 $\sqrt{w_i}\,r_i$ vs $\sqrt{w_i}\,\hat y_i$,应该 <strong>无明显 pattern</strong>(null pattern)。<br>
+<strong>陷阱</strong>:$R^2$ 不能用来比较 WLS 与 OLS。
+</div>
+
+<h3>6.4 VIF <span class="tag">★核心</span></h3>
+<div class="keybox">
+<span class="keybox-title">★ 方差膨胀因子</span>
+$$\text{VIF}_j=\frac{1}{1-R_j^2}$$
+$R_j^2$ = auxiliary regression ($x_j$ 对其他 X 的回归) $R^2$
+</div>
+<p><strong>等价形式</strong>(从 lm 输出手算):</p>
+<div class="keybox">
+$$\text{VIF}_j=\frac{\mathrm{Var}(\hat\beta_j)\cdot\sum_i(x_{ji}-\bar x_j)^2}{\hat\sigma^2}=\frac{SE(\hat\beta_j)^2\,\sum(x_{ji}-\bar x_j)^2}{\hat\sigma^2}$$
+</div>
+<p>阈值:<strong>VIF &gt; 5</strong>(严格)或 <strong>&gt; 10</strong>(宽松)→ 严重共线。</p>
+<p><strong>两预测时 VIF 相等</strong>:$R_2^2=R_3^2=r_{23}^2$(对称),故 $\mathrm{VIF}_2=\mathrm{VIF}_3=1/(1-r^2)$。</p>
+
+<h3>6.5 Ridge Regression 岭回归</h3>
+<div class="keybox">
+$$\hat\beta_{\text{ridge}}=(X^\top X+\lambda I)^{-1}X^\top y$$
+$$\min\|y-X\beta\|^2+\lambda\|\beta\|^2$$
+</div>
+<ul>
+<li>有偏($\lambda&gt;0$)但方差更小</li>
+<li>$\lambda$ 越大 → coef 越靠 0(不为 0)</li>
+<li>$\lambda$ 由 <strong>GCV</strong> 选(GCV 最小)</li>
+<li>X 需标准化</li>
+</ul>
+<pre>library(MASS)
+r &lt;- lm.ridge(y ~ ., data=d, lambda=seq(0,50,0.1))
+plot(r$lambda, r$GCV, type="l")
+lambda.best &lt;- r$lambda[which.min(r$GCV)]</pre>
+
+<h3>6.6 PCR 主成分回归</h3>
+<p>谱分解 $X^\top X = Q\Delta Q^\top$($\tau_j$ = 特征值);主成分 $Z=XQ$:</p>
+<div class="keybox">
+$$\hat\beta_{\text{pcr}}=\sum_{j=1}^{k}\frac{q_j q_j^\top y}{\tau_j},\quad k\le p$$
+</div>
+<ul>
+<li>$k=p$ 时 = OLS</li>
+<li>$k&lt;p$ 时:丢弃小特征值(共线方向)→ 方差降、偏差升</li>
+<li>与 Ridge 对比:Ridge 是连续 shrinkage,PCR 是硬截断</li>
+</ul>
+<pre>library(pls)
+pcr.fit &lt;- pcr(y ~ ., data=d, scale=TRUE, validation="CV")
+validationplot(pcr.fit, val.type="MSEP")</pre>
+
+<h3>6.7 方差稳定变换 Variance Stabilizing Transformation</h3>
+<p>一般原理:若 $\sigma(\mu)$ 已知,找 $g$ 使 $g'(\mu)\propto 1/\sigma(\mu)$。</p>
+
+<table>
+<tr><th>响应类型</th><th>$\sigma^2\propto$</th><th>变换</th></tr>
+<tr><td>比例 Proportion $\in[0,1]$</td><td>$\mu(1-\mu)$</td><td>$\arcsin\sqrt Y$</td></tr>
+<tr><td>计数 Count</td><td>$\mu$</td><td>$\sqrt Y$</td></tr>
+<tr><td>右偏 Right-skewed</td><td>$\mu^2$</td><td>$\log Y$</td></tr>
+<tr><td>严重右偏</td><td>$\mu^4$</td><td>$1/Y$</td></tr>
+</table>
+
+<h3>6.8 Box-Cox Transformation <span class="tag">★</span></h3>
+<div class="keybox">
+$$g_\lambda(Y)=\begin{cases}(Y^\lambda-1)/\lambda, & \lambda\ne 0\\ \log Y, & \lambda=0\end{cases}$$
+若 $\sigma\propto\mu^\alpha$,则最佳 $\lambda=1-\alpha$。
+</div>
+
+<p><strong>$\alpha\to\lambda$ 对应表</strong>(讲义考点):</p>
+<table>
+<tr><th>$\alpha$</th><td>3</td><td>2</td><td>3/2</td><td>1</td><td>1/2</td><td>0</td><td>-1/2</td><td>-1</td></tr>
+<tr><th>$\lambda=1-\alpha$</th><td>-2</td><td>-1</td><td>-1/2</td><td><strong>0 (log)</strong></td><td><strong>1/2 ($\sqrt{}$)</strong></td><td>1 (none)</td><td>3/2</td><td>2</td></tr>
+</table>
+
+<h3>6.9 α 的估计</h3>
+<ul>
+<li><strong>Method I</strong>:$\log s_i$ 对 $\log\bar y_i$ 回归(有重复时) / $\log|r_i|$ 对 $\log\hat y_i$(无重复时)。斜率 $=\hat\alpha$。</li>
+<li><strong>Method II</strong>:最小化 $\max_i(s_i/\bar y_i^\alpha)/\min_i(s_i/\bar y_i^\alpha)$(在候选 α 中网格搜索)。</li>
+</ul>
+
+<h3>6.10 R 实现</h3>
+<pre># WLS
+fit = lm(y ~ X)
+wreg = lm(log(abs(resid(fit))) ~ log(fitted(fit)))
+w = fitted(fit)^(-2*coef(wreg)[2])
+fit.w = lm(y ~ X, weights = w)
+
+# Box-Cox
+library(MASS); bc = boxcox(lm(y~X));  lambda = bc$x[which.max(bc$y)]
+
+# VST
+lm(asin(sqrt(y)) ~ X);  lm(sqrt(y) ~ X);  lm(log(y) ~ X)
+
+# Ridge / PCR (见 6.5, 6.6)</pre>
+
+<!-- ===================================================== -->
+<h2>7. L9 Generalized Linear Models 广义线性模型 <span class="tag">重点</span></h2>
+
+<h3>7.1 GLM 三要素 Three Components</h3>
+<ol>
+<li><strong>Random</strong>(随机分量): $y_i$ 来自某个指数族分布(Normal / Binomial / Poisson)</li>
+<li><strong>Systematic</strong>(系统分量): 线性预测子 $\eta_i = \beta_0 + \sum\beta_j x_{ij}$</li>
+<li><strong>Link</strong>(链接函数): $g(\mu_i) = \eta_i$,即 $\mu_i = g^{-1}(\eta_i)$</li>
+</ol>
+
+<table>
+<tr><th>模型</th><th>分布</th><th>Link $g(\mu)$</th><th>$\mu$ 形式</th><th>Var</th></tr>
+<tr><td>Linear reg</td><td>Normal</td><td>identity</td><td>$\mu=\eta$</td><td>$\sigma^2$</td></tr>
+<tr><td><strong>Logistic</strong></td><td>Bernoulli</td><td>logit $\log\frac{\mu}{1-\mu}$</td><td>$\mu=\dfrac{e^\eta}{1+e^\eta}$</td><td>$\mu(1-\mu)$</td></tr>
+<tr><td><strong>Poisson</strong></td><td>Poisson</td><td>log</td><td>$\mu=e^\eta$</td><td>$\mu$ (= mean)</td></tr>
+</table>
+
+<h3>7.2 Logistic Regression 逻辑斯蒂回归 <span class="tag">★</span></h3>
+
+<div class="keybox">
+<span class="keybox-title">★ 核心公式</span>
+$$\log\frac{\mu(x)}{1-\mu(x)}=\beta_0+\beta_1 x,\qquad \mu(x)=\frac{e^{\beta_0+\beta_1 x}}{1+e^{\beta_0+\beta_1 x}}$$
+</div>
+
+<p><strong>Odds 几率</strong>: $O(x)=\mu(x)/[1-\mu(x)] = e^{\beta_0+\beta_1 x}$</p>
+<p><strong>Odds ratio 几率比</strong>(x 每增 1 单位):</p>
+<div class="keybox">
+$$\text{OR}=\frac{O(x+1)}{O(x)}=e^{\beta_1}$$
+</div>
+
+<h3>7.3 Logistic 推断 Inference</h3>
+<ul>
+<li><strong>Wald z-test</strong>(大样本,非 t!):$z=\hat\beta_j/SE(\hat\beta_j)\sim N(0,1)$</li>
+<li><strong>CI for $\beta_1$</strong>: $\hat\beta_1\pm z_{\alpha/2}\,SE(\hat\beta_1)$</li>
+<li><strong>CI for odds ratio</strong>: $\exp(\text{CI for }\beta_1)$</li>
+<li><strong>Adjusted OR</strong>: 多协变量时 $e^{\beta_j}$ = 固定其他变量时 $x_j$ 每增 1 的 OR</li>
+</ul>
+
+<h3>7.4 其他 Binomial Links(备用)</h3>
+<ul>
+<li><strong>Probit</strong>: $g(\mu)=\Phi^{-1}(\mu)$</li>
+<li><strong>Cloglog</strong>: $g(\mu)=\log(-\log(1-\mu))$</li>
+<li><strong>Cauchit</strong>: $g(\mu)=\tan(\pi(\mu-0.5))$</li>
+</ul>
+
+<h3>7.5 Poisson Regression 泊松回归 <span class="tag">★</span></h3>
+<div class="keybox">
+$$P(Y=y)=\frac{e^{-\mu}\mu^y}{y!},\quad E[Y]=\mathrm{Var}[Y]=\mu$$
+$$\log\mu=\beta_0+\beta_1 x,\qquad \mu(x)=e^{\beta_0+\beta_1 x}$$
+</div>
+<p><strong>Multiplicative change</strong>(x 增 1):</p>
+<div class="keybox">
+$$\frac{\mu(x+1)}{\mu(x)}=e^{\beta_1},\qquad \text{% change}=(e^{\beta_1}-1)\times 100\%$$
+</div>
+
+<h3>7.6 Offset 偏置项(Poisson 暴露量)</h3>
+<p>若每观测有不同"暴露" $m_i$(如人数、时间长度),用 rate $=\mu_i/m_i$:</p>
+<div class="keybox">
+$$\log\mu_i = \log m_i + \beta_0 + \sum_j\beta_j x_{ij}$$
+$\log m_i$ 为 offset,系数固定为 1。
+</div>
+
+<h3>7.7 R 实现</h3>
+<pre># Logistic
+fit &lt;- glm(y ~ x1 + x2, family = binomial(link="logit"), data=d)
+summary(fit); exp(coef(fit)); exp(confint(fit))   # OR and CI
+predict(fit, newdata=new, type="response")         # predicted prob
+
+# Poisson
+fit &lt;- glm(y ~ x1 + x2, family = poisson(link="log"), data=d)
+# with offset:
+glm(y ~ x1 + x2 + offset(log(exposure)), family=poisson, data=d)
+
+# Model selection
+library(MASS); stepAIC(fit)</pre>
+
+<h3>7.8 典型例题</h3>
+<ul>
+<li><strong>Challenger</strong>:24 次发射,temperature → O-ring 失效。$\hat\beta_1=-0.1713$ → $e^{\beta_1}=0.843$,即 temp 每升 1°F,失效 odds 降 15.7%。</li>
+<li><strong>Abdominal Aneurysms (TAA)</strong>:n=368,covariates control/male/early/diameter。control OR=5.425, male OR=0.349, early OR=3.466。</li>
+<li><strong>Mine Fracture</strong>:n=44,Poisson;选 $x_1+x_2+x_4$。</li>
+</ul>
+
+<h3>7.9 Logistic 常考题型</h3>
+<div class="tip">
+<strong>典型问法</strong>:
+<ol>
+<li>给定 $\hat\beta_j$ 和 SE,写 Wald z 统计量并下结论</li>
+<li>解释 $e^{\beta_j}$(OR 或 OR adjusted)</li>
+<li>计算给定 $x$ 的 $\hat\mu$(预测概率)</li>
+<li>给 CI for $\beta$ → 求 CI for OR(取指数)</li>
+<li>模型 vs Linear probability model 的差异(LPM 预测可出 [0,1] 外,方差非常数)</li>
+</ol>
+</div>
+
+<!-- ===================================================== -->
+<h2>8. R 输出逐行解读 Cheat-Sheet</h2>
+
+<h3>8.1 <code>summary(lm)</code></h3>
+<pre>Coefficients:
+             Estimate  Std.Error  t value  Pr(&gt;|t|)
+(Intercept)  95.200    1.766      53.896   1.1e-15 ***
+brand2      -15.800    2.498      -6.325   3.8e-05 ***
+---
+Residual standard error: 9.803 on 23 degrees of freedom
+Multiple R-squared: 0.988, Adjusted R-squared: 0.987
+F-statistic: 918.3 on 2 and 23 DF, p-value: &lt; 2.2e-16</pre>
+
+<ul>
+<li><strong>Estimate</strong> = $\hat\beta_j$; <strong>Std.Error</strong> = $SE(\hat\beta_j)$</li>
+<li><strong>t value</strong> = Estimate/SE ~ $t_{n-p}$ under $H_0$</li>
+<li><strong>Pr(&gt;|t|)</strong> <strong>双侧</strong> p 值;单侧须 ÷2(且方向正确)</li>
+<li><strong>Residual std. error</strong> = $\hat\sigma$;<strong>df = $n-p$</strong> → 反推 $n=df+p$</li>
+<li><strong>F-statistic df</strong>: $(p-1, n-p)$ → 直接读出 $p$ 和 $n$</li>
+</ul>
+
+<h3>8.2 <code>summary(glm)</code> Logistic/Poisson</h3>
+<pre>                Estimate  Std.Error  z value  Pr(&gt;|z|)
+(Intercept)   ...       ...        ...      ...
+x1            ...       ...        ...      ...
+---
+Null deviance:     xxx  on n-1  degrees of freedom
+Residual deviance: xxx  on n-p  degrees of freedom
+AIC: xxx</pre>
+<ul>
+<li><strong>z value</strong> (不是 t)= Wald 统计量</li>
+<li><strong>Null deviance</strong> = only intercept 模型 deviance</li>
+<li><strong>Residual deviance</strong> = 当前模型 deviance;比较两模型 $\Delta D\sim\chi^2_q$</li>
+</ul>
+
+<h3>8.3 <code>anova(lm_r, lm_f)</code></h3>
+<p>输出 partial F:<code>Res.Df</code>, <code>RSS</code>, <code>Df</code>, <code>Sum of Sq</code>, <code>F</code>, <code>Pr(&gt;F)</code>。</p>
+
+<h3>8.4 Var-Cov 矩阵使用</h3>
+<p>对 contrast $L\hat\beta$: $\mathrm{Var}(L\hat\beta)=L\,\Sigma\,L^\top$,$SE=\sqrt{\mathrm{Var}}$。</p>
+<p>常用展开: $\mathrm{Var}(a\hat\beta_i+b\hat\beta_j)=a^2\Sigma_{ii}+b^2\Sigma_{jj}+2ab\Sigma_{ij}$</p>
+
+<!-- ===================================================== -->
+<h2>9. 高频公式速查卡 Formula Sheet <span class="tag">★★★</span></h2>
+
+<div class="keybox big">
+<strong>I. 基础分布</strong><br>
+$\hat\beta\sim N(\beta,\,\sigma^2(X^\top X)^{-1})$;&nbsp;
+$\dfrac{\hat\beta_j-\beta_j}{SE(\hat\beta_j)}\sim t_{n-p}$;&nbsp;
+$\dfrac{(n-p)\hat\sigma^2}{\sigma^2}\sim\chi^2_{n-p}$
+</div>
+
+<div class="keybox big">
+<strong>II. Multiple Comparisons</strong><br>
+Bonferroni: $t_{n-p}(\alpha/(2k))$<br>
+Scheffé: $\sqrt{(a-1)F_{a-1,\,n-a}(\alpha)}$<br>
+Tukey: $q_{a,\,n-a}(\alpha)/\sqrt 2$<br>
+Dunnett: 表 $d_{a,\nu,\alpha}$;unequal n 因子 $1+0.07(1-n_j/n_1)$
+</div>
+
+<div class="keybox big">
+<strong>III. General Linear F-test</strong><br>
+$F=\dfrac{(SSE_R-SSE_F)/q}{SSE_F/(n-p_F)}\sim F_{q,\,n-p_F}$
+</div>
+
+<div class="keybox big">
+<strong>IV. Model Selection</strong><br>
+$R_a^2 = R^2 - \frac{p}{n-p-1}(1-R^2)$<br>
+$C_p = SSE_M/\hat\sigma^2_{\text{full}} - n + 2|M|$<br>
+AIC $= n\ln\hat\sigma^2_M + 2j_M$; BIC $= n\ln\hat\sigma^2_M + j_M\ln n$
+</div>
+
+<div class="keybox big">
+<strong>V. Diagnostics</strong><br>
+$h_{ii}&gt;2p/n$ → high leverage<br>
+$r_i' = e_i/[\hat\sigma\sqrt{1-h_{ii}}]$;&nbsp;
+$r_i^* = r_i'\sqrt{(n-p-1)/(n-p-r_i'^2)}\sim t_{n-p-1}$<br>
+$d_i = \frac{r_i'^2}{p}\cdot\frac{h_{ii}}{1-h_{ii}}$
+</div>
+
+<div class="keybox big">
+<strong>VI. WLS &amp; Multicollinearity</strong><br>
+$\hat\beta_W = (X^\top W X)^{-1}X^\top W y$, $w_i=1/\sigma_i^2$<br>
+$\text{VIF}_j = 1/(1-R_j^2) = SE(\hat\beta_j)^2\sum(x_{ji}-\bar x_j)^2/\hat\sigma^2$<br>
+Ridge: $(X^\top X+\lambda I)^{-1}X^\top y$<br>
+LASSO: $\min\tfrac{1}{2n}\|y-X\beta\|^2+\lambda\|\beta\|_1$
+</div>
+
+<div class="keybox big">
+<strong>VII. Box-Cox</strong><br>
+$g_\lambda(Y)=(Y^\lambda-1)/\lambda$ ($\lambda\ne 0$), $\log Y$ ($\lambda=0$)<br>
+若 $\sigma\propto\mu^\alpha$: $\lambda=1-\alpha$
+</div>
+
+<div class="keybox big">
+<strong>VIII. GLM</strong><br>
+Logistic: $\log\frac{\mu}{1-\mu}=\beta_0+\sum\beta_j x_j$;&nbsp; OR $=e^{\beta_j}$<br>
+Poisson: $\log\mu=\beta_0+\sum\beta_j x_j$;&nbsp; % change $=(e^{\beta_j}-1)\times 100\%$<br>
+Offset: $\log\mu_i=\log m_i+\eta_i$<br>
+Wald: $z=\hat\beta/SE\sim N(0,1)$
+</div>
+
+<!-- ===================================================== -->
+<h2>10. 七种题型应答模板 Question Templates</h2>
+
+<table>
+<tr><th>题型</th><th>步骤</th></tr>
+<tr><td>A. Multiple comparison</td><td>① 写 $H_0/H_1$ ② 取 $\hat L,SE$ 算 $t^*$ ③ 定 critical ④ 比较下结论</td></tr>
+<tr><td>B. General linear F-test(交互/子集)</td><td>① 写 $L\beta=0$ ② Partial F 或 $L\Sigma L^\top$ ③ 查 $F_{q,n-p}$ ④ 结论</td></tr>
+<tr><td>C. stepAIC 阅读</td><td>找 SSR 最大 → 候选;新 AIC 与 &lt;none&gt; 比</td></tr>
+<tr><td>D. VIF 手算</td><td>$SE^2\sum(x-\bar x)^2/\hat\sigma^2$;判严重程度;inference vs prediction</td></tr>
+<tr><td>E. 诊断图阅读</td><td>Resid-Fitted:漏斗=异方差/曲线=非线性;QQ:重尾/偏;Cook/lev/rstu QQ 数极值</td></tr>
+<tr><td>F. Formal outlier test</td><td>造 m 个 dummy;Bonferroni $t_{n-p-m}(\alpha/(2m))$;逐个比较 |t|</td></tr>
+<tr><td>G. GLM(Logistic/Poisson)</td><td>① Wald z=$\hat\beta$/SE ② 解释 $e^{\beta}$ ③ 算 $\hat\mu$ ④ CI 取 exp</td></tr>
+</table>
+
+<!-- ===================================================== -->
+<h2>11. 考前 48 小时 Checklist</h2>
+
+<ul>
+<li>☐ 默写 <strong>三类残差</strong>公式 + 分布</li>
+<li>☐ 默写 <strong>Scheffé / Tukey / Bonferroni</strong> 的 critical value</li>
+<li>☐ 从 <code>vcov</code> 手算任意 contrast 的 $SE$</li>
+<li>☐ 读 <code>stepAIC</code> 输出,找候选,判能否加入</li>
+<li>☐ 从 <code>summary(lm)</code> 推出 $n, p, \hat\sigma$</li>
+<li>☐ 手算 <strong>VIF</strong>(两种等价形式)</li>
+<li>☐ 区分 <strong>leverage / outlier / influence</strong></li>
+<li>☐ Bonferroni 同时检验 $m$ 个 outlier 的 critical</li>
+<li>☐ <strong>WLS 三种权重估计</strong>:log-log / linear / grouped</li>
+<li>☐ <strong>Ridge vs LASSO vs PCR</strong> 的适用场景</li>
+<li>☐ <strong>Box-Cox</strong> $\alpha\to\lambda$ 对应表</li>
+<li>☐ <strong>Logistic</strong>:OR, adjusted OR, $\hat\mu(x)$ 的手算</li>
+<li>☐ <strong>Poisson</strong>:$e^{\beta_j}-1$ % change, offset 用法</li>
+<li>☐ 2021 <strong>Past paper</strong> 完整手做一遍</li>
+<li>☐ 打印合并讲义 <strong>ST5202_All_Lectures_Annotated.pdf</strong>(带批注),考前翻</li>
+</ul>
+
+<!-- ===================================================== -->
+<h2>12. 中英术语对照 Glossary</h2>
+
+<table>
+<tr><th>中文</th><th>English</th><th>中文</th><th>English</th></tr>
+<tr><td>多重比较</td><td>multiple comparisons</td><td>族错误率</td><td>family-wise error rate (FWER)</td></tr>
+<tr><td>对比</td><td>contrast</td><td>同步置信区间</td><td>simultaneous CI</td></tr>
+<tr><td>学生化范围</td><td>Studentized range</td><td>协方差分析</td><td>ANCOVA / ANOCOV</td></tr>
+<tr><td>分段线性</td><td>piecewise linear</td><td>中心化</td><td>centering</td></tr>
+<tr><td>残差平方和</td><td>SSE</td><td>回归平方和</td><td>SSR</td></tr>
+<tr><td>交互</td><td>interaction</td><td>哑变量</td><td>dummy variable</td></tr>
+<tr><td>方差膨胀因子</td><td>VIF</td><td>多重共线性</td><td>multicollinearity</td></tr>
+<tr><td>杠杆值</td><td>leverage / hat value</td><td>帽子矩阵</td><td>hat matrix</td></tr>
+<tr><td>标准化残差</td><td>studentized residual (internal)</td><td>学生化删除残差</td><td>studentized deleted residual (external)</td></tr>
+<tr><td>Cook 距离</td><td>Cook's distance</td><td>影响观测</td><td>influential observation</td></tr>
+<tr><td>异常值</td><td>outlier</td><td>前向选择</td><td>forward selection</td></tr>
+<tr><td>后向剔除</td><td>backward elimination</td><td>逐步回归</td><td>stepwise</td></tr>
+<tr><td>偏差-方差</td><td>bias-variance</td><td>Mallow's Cp</td><td>Mallow's Cp</td></tr>
+<tr><td>加权最小二乘</td><td>WLS</td><td>岭回归</td><td>ridge regression</td></tr>
+<tr><td>套索</td><td>LASSO</td><td>自适应套索</td><td>adaptive LASSO</td></tr>
+<tr><td>主成分回归</td><td>PCR</td><td>方差稳定变换</td><td>variance stabilizing transformation (VST)</td></tr>
+<tr><td>Box-Cox 变换</td><td>Box-Cox transformation</td><td>广义线性模型</td><td>generalized linear model (GLM)</td></tr>
+<tr><td>连接函数</td><td>link function</td><td>逻辑斯蒂回归</td><td>logistic regression</td></tr>
+<tr><td>几率</td><td>odds</td><td>几率比</td><td>odds ratio</td></tr>
+<tr><td>泊松回归</td><td>Poisson regression</td><td>偏置项</td><td>offset</td></tr>
+<tr><td>对数似然</td><td>log-likelihood</td><td>偏差</td><td>deviance</td></tr>
+<tr><td>Wald 检验</td><td>Wald test</td><td>广义交叉验证</td><td>GCV</td></tr>
+</table>
+
+<hr>
+<p style="text-align:center; margin-top:10pt; font-size:10pt;"><em>End of Review · 祝考试顺利 Good luck!</em></p>
+
+</div>
+</body>
+</html>
